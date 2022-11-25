@@ -28,6 +28,7 @@ reflections = {
   "me"         : "you"
 }
 
+
 pairs = [
     [
         r"my name is (.*)",
@@ -39,18 +40,42 @@ pairs = [
     ],
     [
         r"what is your name ?",
-        ["I am a bot created by Analytics Vidhya. you can call me crazy!",]
+        ["I am a robo receptionist created by iot group.",]
     ],
     [
-        r"tell me about mca|may i know about mca|mca",
-        ["mca is Master fo computer appllications program offered by the Christ deemed to be university. It is a professional course and is spread over a time of 2 years.",]
+        r"mca lab|where is mca lab",
+        ["mca lab is in central block, 8th floor, room number 811",]
+    ],
+    [
+        r"tell me about mca|may i know about mca",
+        ["mca is Master fo computer applications program offered by the Christ deemed to be university. It is a professional course and is spread over a time of 2 years.",]
+    ],
+    [
+        r"what are the courses in computer science|courses in computer science|course",
+        ["Undergraduate Programmes are BSc CME, BSc in CMS, BCA. Postgraduate Programmes MSc Cs, Msc CS and Applications, MCA. Research Programmes Phd.",]
     ],
     [
         r"how are you ?",
-        ["I'm doing goodnHow about You ?",]
+        ["I'm doing good and How about You ?",]
     ],
     [
-        r"sorry (.*)",
+        r"(.*)deepa(.*)",
+        ["Dr deepa v jose is an assistant professor in computer science department. she has done MCA, MTech, MPhil, PhD",]
+    ],
+    [
+        r"(.*)senthilnathan(.*)",
+        ["Dr senthilnathan is an associate professor in computer science department. she has done MCA, ME, MPhil, PhD",]
+    ],
+    [
+        r"(.*)chandra(.*)",
+        ["Dr chandra J is an assistant professor in computer science department. she has done MCA, MPhil, PhD",]
+    ],
+    [
+        r"(.*)teachers|faculty(.*)",
+        ["Dr Deepa V Jose, Dr Chandra J, Dr senthilnathan, Dr Sagaya Aurelia, Dr Shoney Sebastian",]
+    ],
+    [
+        r"sorry(.*)",
         ["Its alright","Its OK, never mind",]
     ],
     [
@@ -62,6 +87,10 @@ pairs = [
         ["Nice to hear that","How can I help you?:)",]
     ],
     [
+        r"where should i enquire about mca admissions| admissions",
+        ["You can get admission details in Christ University website or visit central block 0th floor admission office",]
+    ],
+    [
         r"(.*) age?",
         ["I'm a computer program dudenSeriously you are asking me this?",]
     ],
@@ -71,7 +100,7 @@ pairs = [
     ],
     [
         r"(.*) created ?",
-        ["Raghav created me using Python's NLTK library ","top secret ;)",]
+        ["IOT group created me using Python's NLTK library ","top secret ;)",]
     ],
     [
         r"(.*) (location|city) ?",
@@ -102,19 +131,10 @@ pairs = [
         ["Messy","Ronaldo","Roony"]
     ],
     [
-        r"who (.*) (moviestar|actor)?",
-        ["Brad Pitt"]
-    ],
-    [
-        r"i am looking for online guides and courses to learn data science, can you suggest?",
-        ["Crazy_Tech has many great articles with each step explanation along with code, you can explore"]
-    ],
-    [
         r"quit",
         ["BBye take care. See you soon :) ","It was nice talking to you. See you soon :)"]
     ],
 ]
-
 
 def chat():
     print("Hi! I am a chatbot created by Analytics Vidhya for your service")
@@ -146,5 +166,6 @@ class replyapp(APIView):
         chat = Chat(pairs, reflections)
         print(query)
         result = chat.respond(query)
+        print(result)
         return JsonResponse(result,status=status.HTTP_200_OK, safe=False)
         return Response({'result':result}, status=status.HTTP_200_OK)
