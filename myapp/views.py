@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 from rest_framework.views import APIView  
 from rest_framework.response import Response  
@@ -122,9 +123,6 @@ def chat():
 
     print(chat.respond("MCA"))
 
-
-
-
 def getreply_func(data):
     resultdata = data * data
     return resultdata
@@ -148,4 +146,5 @@ class replyapp(APIView):
         chat = Chat(pairs, reflections)
         print(query)
         result = chat.respond(query)
+        return JsonResponse(result,status=status.HTTP_200_OK, safe=False)
         return Response({'result':result}, status=status.HTTP_200_OK)
