@@ -25,9 +25,10 @@ SECRET_KEY = 'django-insecure-l34=2a1p&%g^-6e72soai(qbh$&zh8s!k&@09o^u%7fvp8u731
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8001','mcarr-api-version01.herokuapp.com']
+# ALLOWED_HOSTS = ['http://127.0.0.1:8001','mcarr-api-version01.herokuapp.com']
 
-
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,9 +41,11 @@ INSTALLED_APPS = [
 
     'myapp',
     'rest_framework',
+     'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
